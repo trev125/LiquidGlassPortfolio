@@ -10,8 +10,6 @@ site/            # Everything that gets deployed
   app.js         # Tab bar selection on scroll
   icons/         # Skill tiles for the Dock (Simple Icons, CC0)
   favicon.svg
-NAV_WORK_SUMMARY.md  # Private notes, not deployed
-Resume.pdf           # Not deployed (has address and phone)
 ```
 
 ## Editing
