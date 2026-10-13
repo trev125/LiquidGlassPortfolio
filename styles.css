@@ -1,0 +1,333 @@
+/* Layout and a few custom pieces. Colors, type, and materials come from Puppertino tokens so dark mode works for free. */
+
+:root {
+  --radius: 14px;
+  --gap: 16px;
+}
+
+:root.p-dark-mode { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  :root.p-auto-dark-mode { color-scheme: dark; }
+}
+
+body {
+  margin: 0;
+  background: var(--p-bg-grouped-primary);
+  color: var(--p-text-primary);
+}
+
+html { scroll-behavior: smooth; }
+
+/* Soft accent glow behind the header. */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 420px;
+  background:
+    radial-gradient(40% 60% at 25% 20%, color-mix(in srgb, var(--p-sys-blue) 22%, transparent), transparent),
+    radial-gradient(40% 60% at 80% 10%, color-mix(in srgb, var(--p-sys-indigo) 20%, transparent), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.muted { color: var(--p-text-secondary); }
+
+a { color: var(--p-control-accent-text); }
+
+/* ---- Tab bar ---- */
+
+/* Pinned here instead of with .p-tab-bar-group and .p-tab-bar-fixed so the bar and button can each transition their size. */
+.tab-bar,
+.theme-button {
+  --nav-width: min(360px, 100vw - 32px);
+  position: fixed;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 70;
+}
+
+.tab-bar { left: calc(50% - var(--nav-width) / 2); }
+.tab-bar:not(.p-tab-bar-minimized) { width: calc(var(--nav-width) - 70px); max-width: none; }
+
+.theme-button {
+  display: grid;
+  place-items: center;
+  left: calc(50% + var(--nav-width) / 2 - 62px);
+}
+
+/* Mirror the bar's minimized size, since the button isn't inside a .p-tab-bar-group. */
+body:has(.tab-bar.p-tab-bar-minimized) .theme-button {
+  width: 48px;
+  height: 48px;
+  left: calc(50% + var(--nav-width) / 2 - 48px);
+}
+
+/* Puppertino snaps between sizes and hides the other tabs with display: none. Animate the collapse instead:
+   the bar shrinks, unselected tabs fold to zero width and fade, and the selected label fades out. */
+.tab-bar,
+.theme-button {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+  transition: width 0.4s var(--ease), height 0.4s var(--ease), padding 0.4s var(--ease),
+    border-radius 0.4s var(--ease), left 0.4s var(--ease);
+}
+
+.tab-bar > .p-tab-bar__tab {
+  transition: flex-grow 0.4s var(--ease), width 0.4s var(--ease), padding 0.4s var(--ease), opacity 0.25s ease;
+}
+
+/* Only unselected tabs clip while folding. The selected pill draws 6px past its tab and would get cut off. */
+.tab-bar > .p-tab-bar__tab:not([aria-current]) { overflow: hidden; }
+
+.tab-bar > .p-tab-bar__tab > span {
+  overflow: hidden;
+  max-height: 12px;
+  transition: max-height 0.4s var(--ease), opacity 0.2s ease;
+}
+
+.tab-bar.p-tab-bar-minimized > .p-tab-bar__tab:not([aria-current]) {
+  display: flex;
+  flex-grow: 0;
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Keep the label in the layout (instead of Puppertino's clip) so it can fade. It stays readable to screen readers. */
+.tab-bar.p-tab-bar-minimized > .p-tab-bar__tab > span {
+  position: static;
+  width: auto;
+  height: auto;
+  clip-path: none;
+  max-height: 0;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-bar,
+  .theme-button,
+  .tab-bar > .p-tab-bar__tab,
+  .tab-bar > .p-tab-bar__tab > span { transition: none; }
+}
+
+/* ---- Page ---- */
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 120px;
+}
+
+.page section { margin-top: 40px; scroll-margin-top: 24px; }
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px var(--gap);
+  margin-bottom: 12px;
+}
+
+.section-head h2 { margin: 0; }
+
+.card {
+  background: var(--p-bg-grouped-secondary);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--p-shadow-glass-control);
+}
+
+.card > p:last-child { margin-bottom: 0; }
+
+/* ---- App header ---- */
+
+.app-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.app-icon {
+  flex: none;
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  font: 700 44px/1 var(--p-font-display);
+  color: #fff;
+  background: linear-gradient(135deg, var(--p-sys-blue), var(--p-sys-indigo));
+  box-shadow: var(--p-glass-edge), 0 8px 24px color-mix(in srgb, var(--p-sys-indigo) 35%, transparent);
+}
+
+.app-name { margin: 0 0 2px; }
+.app-header p { margin: 0; }
+
+.actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.actions .p-button { text-decoration: none; }
+
+/* App Store style row of quick facts. */
+.info-strip {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 14px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-block: 0.5px solid var(--p-separator);
+}
+
+.info-strip li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 0 8px;
+}
+
+.info-strip li + li { border-left: 0.5px solid var(--p-separator); }
+.info-strip strong { font: 600 20px/1.2 var(--p-font-display); color: var(--p-text-secondary); }
+
+/* ---- Release notes ---- */
+
+.notes { margin: 12px 0 0; padding-left: 20px; }
+.notes li { margin-bottom: 6px; line-height: 1.4; }
+
+.major {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 32px 0 2px;
+}
+
+.major span { font-size: 17px; font-weight: 500; color: var(--p-text-secondary); }
+.major-dates { margin: 0 0 10px; }
+
+.release {
+  background: var(--p-bg-grouped-secondary);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+
+.release summary {
+  display: grid;
+  grid-template-columns: 3.2em 1fr auto auto;
+  align-items: baseline;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.release summary::-webkit-details-marker { display: none; }
+
+/* Chevron rotates when a release is expanded. */
+.release summary::after {
+  content: "›";
+  color: var(--p-text-tertiary);
+  transition: transform 0.2s;
+}
+
+.release[open] summary::after { transform: rotate(90deg); }
+
+.release summary:focus-visible { outline: none; box-shadow: var(--p-focus-ring); border-radius: 6px; }
+
+.ver { font-weight: 600; color: var(--p-control-accent-text); font-variant-numeric: tabular-nums; }
+.title { font-weight: 600; }
+.date { font-size: 13px; color: var(--p-text-secondary); }
+
+/* ---- Tags ---- */
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.tags li {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--p-fill-tertiary);
+  color: var(--p-text-secondary);
+}
+
+/* ---- Release filter ---- */
+
+/* CSS only: the checked radio hides releases without a matching data-area, then any role left empty. */
+#history:has([value="web"]:checked) .release:not([data-area~="web"]),
+#history:has([value="mobile"]:checked) .release:not([data-area~="mobile"]),
+#history:has([value="backend"]:checked) .release:not([data-area~="backend"]),
+#history:has([value="web"]:checked) .role:not(:has([data-area~="web"])),
+#history:has([value="mobile"]:checked) .role:not(:has([data-area~="mobile"])),
+#history:has([value="backend"]:checked) .role:not(:has([data-area~="backend"])) {
+  display: none;
+}
+
+/* ---- Skills dock ---- */
+
+.skills-dock {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  margin: 16px auto 0;
+  padding: 8px 8px 11px;
+}
+
+/* Puppertino places the label above fully magnified icons. Magnification is off here, so pull it down to the platter. */
+.skills-dock .p-dock-label { bottom: calc(100% + 8px); }
+
+/* Leave room above the dock for the hover label on pointer devices. */
+@media (hover: hover) and (pointer: fine) {
+  .skills-dock { margin-top: 44px; }
+}
+
+.skills-caption { margin: 0; }
+
+/* ---- Information ---- */
+
+.info-table {
+  margin: 0;
+  background: var(--p-bg-grouped-secondary);
+  border-radius: var(--radius);
+  padding: 0 18px;
+}
+
+.info-table div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 12px 0;
+}
+
+.info-table div + div { border-top: 0.5px solid var(--p-separator); }
+.info-table dt { flex: none; color: var(--p-text-secondary); }
+.info-table dd { margin: 0; text-align: right; }
+
+footer { margin-top: 40px; text-align: center; }
+
+/* ---- Small screens ---- */
+
+@media (max-width: 560px) {
+  .app-header { flex-direction: column; align-items: flex-start; }
+  .app-icon { width: 88px; height: 88px; border-radius: 20px; font-size: 34px; }
+  .info-strip { grid-template-columns: repeat(2, 1fr); row-gap: 14px; }
+  .info-strip li:nth-child(3) { border-left: none; }
+  .release summary { grid-template-columns: 2.6em 1fr auto; }
+  .release .date { grid-column: 2; grid-row: 2; }
+  .release summary::after { grid-column: 3; grid-row: 1; }
+  .filter { width: 100%; }
+  .filter .p-segment { flex: 1; }
+  .skills-dock { flex-wrap: wrap; justify-content: center; height: auto; row-gap: 12px; }
+  .skills-dock .p-dock-separator { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .release summary::after { transition: none; }
+}

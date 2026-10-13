@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="p-auto-dark-mode">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trevor Allen · Version History</title>
+  <meta name="description" content="Trevor Allen, Senior Software Engineer. Six years of shipping web, mobile, and backend software, told as release notes.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@codedgar/puppertino@2.0.0/dist/css/puppertino.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js"></script>
+</head>
+<body class="p-type">
+
+  <main class="page">
+
+    <!-- ---- App header ---- -->
+    <section class="app-header">
+      <div class="app-icon" aria-hidden="true">TA</div>
+      <div>
+        <h1 class="app-name">Trevor Allen</h1>
+        <p class="p-subhead-2 muted">Senior Software Engineer</p>
+        <div class="actions">
+          <a class="p-button p-button-large p-button-colored" href="mailto:trev125@gmail.com">Email</a>
+          <!-- Replace with the full LinkedIn profile URL. -->
+          <a class="p-button p-button-large p-button-tinted" href="https://www.linkedin.com/in/REPLACE_ME" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <ul class="info-strip">
+      <li><span class="p-caption-1 muted">EXPERIENCE</span><strong>6 yrs</strong><span class="p-caption-1 muted">at Nav</span></li>
+      <li><span class="p-caption-1 muted">COMMITS</span><strong>1.1k+</strong><span class="p-caption-1 muted">shipped</span></li>
+      <li><span class="p-caption-1 muted">PLATFORMS</span><strong>3</strong><span class="p-caption-1 muted">web, mobile, services</span></li>
+      <li><span class="p-caption-1 muted">LOCATION</span><strong>WA</strong><span class="p-caption-1 muted">remote</span></li>
+    </ul>
+
+    <!-- ---- What's New ---- -->
+    <section id="new">
+      <div class="section-head">
+        <h2>What's New</h2>
+        <span class="p-footnote-2 muted">Version 4.7 · 2026</span>
+      </div>
+      <div class="card">
+        <p>Building the account and messaging platform behind a financial health app for small businesses.</p>
+        <ul class="notes">
+          <li>Passkeys, Google, and Apple sign-in across web, iOS, and Android.</li>
+          <li>A unified activity feed and a move to a new customer messaging provider.</li>
+          <li>Device fingerprinting and fraud bans to stop repeat abusive signups.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ---- Version History ----
+         Each role is a major version. Each project is a minor version inside it.
+         Copy an existing <details> block to add a new release. data-area drives the filter
+         and takes any of: web, mobile, backend. -->
+    <section id="history">
+      <div class="section-head">
+        <h2>Version History</h2>
+        <div class="p-segmented p-segmented-large filter" role="group" aria-label="Filter releases">
+          <label class="p-segment"><input type="radio" name="area" value="all" checked><span>All</span></label>
+          <label class="p-segment"><input type="radio" name="area" value="web"><span>Web</span></label>
+          <label class="p-segment"><input type="radio" name="area" value="mobile"><span>Mobile</span></label>
+          <label class="p-segment"><input type="radio" name="area" value="backend"><span>Backend</span></label>
+        </div>
+      </div>
+
+      <div class="role">
+        <h3 class="major">4.x <span>Senior Software Engineer · Nav</span></h3>
+        <p class="p-footnote-2 muted major-dates">Jun 2023 to present · Remote</p>
+
+        <details class="release" data-area="web mobile backend" open>
+          <summary><span class="ver">4.7</span><span class="title">Messaging platform</span><span class="date">2026</span></summary>
+          <ul class="notes">
+            <li>Built notification history tools for support: delivery logs, rendered email previews with customer data, and charts.</li>
+            <li>Migrated in-app messaging and notification preferences to a new provider on web and mobile.</li>
+            <li>Shipped SMS consent flows and a unified activity feed with grouping and plan-based content.</li>
+            <li>Added unsubscribe handling across every email template.</li>
+          </ul>
+          <ul class="tags"><li>TypeScript</li><li>Go</li><li>Flutter</li><li>gRPC</li></ul>
+        </details>
+
+        <details class="release" data-area="web mobile backend" open>
+          <summary><span class="ver">4.6</span><span class="title">Modern sign-in</span><span class="date">2025 to 2026</span></summary>
+          <ul class="notes">
+            <li>Led a new authentication platform from the mobile client through to the backend services.</li>
+            <li>Shipped passkeys end to end, including support for multiple origins and password managers.</li>
+            <li>Added Google and Apple sign-in, account linking, pre-registration MFA, and email verification.</li>
+            <li>Built a Security settings page and device-fingerprint based fraud bans.</li>
+          </ul>
+          <ul class="tags"><li>Java</li><li>Go</li><li>Flutter</li><li>React</li><li>Passkeys</li></ul>
+        </details>
+
+        <details class="release" data-area="web mobile">
+          <summary><span class="ver">4.5</span><span class="title">AI assistant</span><span class="date">2025 to 2026</span></summary>
+          <ul class="notes">
+            <li>Built the chat experience for our in-house AI using gRPC streaming.</li>
+            <li>Added per-response feedback, loading states, and in-context prompts throughout the app.</li>
+            <li>Brought the assistant to the mobile app with conversation history.</li>
+          </ul>
+          <ul class="tags"><li>React</li><li>gRPC</li><li>Flutter</li></ul>
+        </details>
+
+        <details class="release" data-area="web backend">
+          <summary><span class="ver">4.4</span><span class="title">Passwordless and safer signups</span><span class="date">2024 to 2025</span></summary>
+          <ul class="notes">
+            <li>Shipped magic-link login with remember me and cross-tab handling.</li>
+            <li>Added email, IP, and phone risk checks plus bot protection at signup.</li>
+            <li>Hardened the content security policy and moved analytics to a new tag manager.</li>
+          </ul>
+          <ul class="tags"><li>Node.js</li><li>TypeScript</li><li>Auth0</li></ul>
+        </details>
+
+        <details class="release" data-area="backend mobile">
+          <summary><span class="ver">4.3</span><span class="title">Auth0 migration service</span><span class="date">2023 to 2025</span></summary>
+          <ul class="notes">
+            <li>Built a Node.js microservice to move users off a legacy auth system and onto Auth0.</li>
+            <li>Added mobile MFA, login event logging, account deletion, and data anonymization.</li>
+          </ul>
+          <ul class="tags"><li>Node.js</li><li>Auth0</li></ul>
+        </details>
+
+        <details class="release" data-area="web mobile backend">
+          <summary><span class="ver">4.2</span><span class="title">Notification center</span><span class="date">2023 to 2024</span></summary>
+          <ul class="notes">
+            <li>Built an in-app notification center and preference settings on web and mobile.</li>
+            <li>Created an internal admin tool for the notifications team with SSO and data exports.</li>
+          </ul>
+          <ul class="tags"><li>Flutter</li><li>React</li><li>Next.js</li><li>Go</li></ul>
+        </details>
+
+        <details class="release" data-area="web">
+          <summary><span class="ver">4.1</span><span class="title">Acquisition onboarding</span><span class="date">2023</span></summary>
+          <ul class="notes">
+            <li>Led a custom onboarding flow after Nav acquired another company.</li>
+            <li>Migrated about 100k accounts with a terms wall and a guided move to Nav plans.</li>
+          </ul>
+          <ul class="tags"><li>React</li><li>GraphQL</li></ul>
+        </details>
+
+        <details class="release" data-area="web">
+          <summary><span class="ver">4.0</span><span class="title">Shared components</span><span class="date">Ongoing</span></summary>
+          <ul class="notes">
+            <li>Contributed navigation, accordion, drawer, and loading components to the shared design system.</li>
+            <li>Upgraded the web toolchain and made CI smarter about when to run snapshot tests.</li>
+          </ul>
+          <ul class="tags"><li>React</li><li>TypeScript</li><li>CI</li></ul>
+        </details>
+      </div>
+
+      <div class="role">
+        <h3 class="major">3.x <span>Software Engineer · Nav</span></h3>
+        <p class="p-footnote-2 muted major-dates">Feb 2022 to Jun 2023 · Remote</p>
+
+        <details class="release" data-area="mobile">
+          <summary><span class="ver">3.1</span><span class="title">First mobile release</span><span class="date">2022 to 2023</span></summary>
+          <ul class="notes">
+            <li>Learned Flutter and Dart, then added Auth0 login and signup to the iOS and Android app.</li>
+          </ul>
+          <ul class="tags"><li>Flutter</li><li>Dart</li></ul>
+        </details>
+
+        <details class="release" data-area="web backend">
+          <summary><span class="ver">3.0</span><span class="title">Partner experiences</span><span class="date">2022</span></summary>
+          <ul class="notes">
+            <li>Built a Preact modal displayed on partner websites.</li>
+            <li>Streamlined the internal process for creating new partners.</li>
+          </ul>
+          <ul class="tags"><li>Preact</li><li>React</li><li>GraphQL</li><li>Go</li></ul>
+        </details>
+      </div>
+
+      <div class="role">
+        <h3 class="major">2.x <span>Software Engineer in Test · Nav</span></h3>
+        <p class="p-footnote-2 muted major-dates">Oct 2020 to Feb 2022 · Draper, UT</p>
+
+        <details class="release" data-area="web">
+          <summary><span class="ver">2.0</span><span class="title">Test automation</span><span class="date">2020 to 2022</span></summary>
+          <ul class="notes">
+            <li>Wrote Cypress suites for the marketing site, the logged-in app, and a partner site that authenticates by handshake.</li>
+            <li>Built CI jobs that run tests in parallel at each stage of deployment and report to Slack.</li>
+          </ul>
+          <ul class="tags"><li>Cypress</li><li>GitLab CI</li><li>Docker</li></ul>
+        </details>
+      </div>
+
+      <div class="role">
+        <h3 class="major">1.x <span>Software Engineer · The Church of Jesus Christ</span></h3>
+        <p class="p-footnote-2 muted major-dates">Jan 2020 to Jun 2020 · Riverton, UT</p>
+
+        <details class="release" data-area="web backend">
+          <summary><span class="ver">1.0</span><span class="title">Initial release</span><span class="date">2020</span></summary>
+          <ul class="notes">
+            <li>Worked on a Vue.js frontend with a Kotlin backend.</li>
+            <li>Partnered with QA to write test cases for the site.</li>
+          </ul>
+          <ul class="tags"><li>Vue.js</li><li>Kotlin</li></ul>
+        </details>
+      </div>
+
+      <div class="role">
+        <h3 class="major">0.x <span>Beta · Brigham Young University</span></h3>
+        <p class="p-footnote-2 muted major-dates">2016 to 2020 · Provo, UT</p>
+
+        <details class="release" data-area="">
+          <summary><span class="ver">0.9</span><span class="title">Public beta</span><span class="date">2020</span></summary>
+          <ul class="notes">
+            <li>B.S. in Information Technology and Cyber Security, minor in Business.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- ---- Compatibility ----
+         Icons are Simple Icons (CC0) on app-style tiles in icons/. dock.js reads aria-label for the hover label. -->
+    <section id="skills">
+      <div class="section-head">
+        <h2>Compatibility</h2>
+      </div>
+      <div class="card skills-card">
+        <p class="p-subhead-2 muted skills-caption">Languages, frameworks, and tools I ship with.</p>
+        <div class="p-dock skills-dock">
+          <span class="p-dock-item" role="img" aria-label="TypeScript"><img src="icons/typescript.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="React"><img src="icons/react.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Node.js"><img src="icons/nodedotjs.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Java"><img src="icons/openjdk.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Go"><img src="icons/go.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Kotlin"><img src="icons/kotlin.svg" alt=""></span>
+          <div class="p-dock-separator" role="separator"></div>
+          <span class="p-dock-item" role="img" aria-label="Flutter"><img src="icons/flutter.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Dart"><img src="icons/dart.svg" alt=""></span>
+          <div class="p-dock-separator" role="separator"></div>
+          <span class="p-dock-item" role="img" aria-label="GraphQL"><img src="icons/graphql.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="gRPC"><img src="icons/grpc.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Auth0"><img src="icons/auth0.svg" alt=""></span>
+          <span class="p-dock-item" role="img" aria-label="Cypress"><img src="icons/cypress.svg" alt=""></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---- Information ---- -->
+    <section id="info">
+      <div class="section-head">
+        <h2>Information</h2>
+      </div>
+      <dl class="info-table">
+        <div><dt>Developer</dt><dd>Trevor Allen</dd></div>
+        <div><dt>Current role</dt><dd>Senior Software Engineer, Nav</dd></div>
+        <div><dt>Education</dt><dd>B.S., Brigham Young University</dd></div>
+        <div><dt>Location</dt><dd>Vancouver, WA</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:trev125@gmail.com">trev125@gmail.com</a></dd></div>
+      </dl>
+    </section>
+
+    <footer class="p-caption-1 muted">© 2026 Trevor Allen</footer>
+  </main>
+
+  <!-- ---- Tab bar ----
+       The bar and the theme button are pinned separately so each can animate its own size when minimizing. -->
+  <nav class="p-tab-bar tab-bar" aria-label="Sections" data-p-minimize="scroll">
+    <a class="p-tab-bar__tab" href="#new" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z"/></svg>
+      <span>New</span>
+    </a>
+    <a class="p-tab-bar__tab" href="#history">
+      <!-- Clock with a rewind arrow, adapted from Lucide "history" (ISC). -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" fill="none"/><path d="M3 3v5h5" fill="none"/><path d="M12 7v5l4 2" fill="none"/></svg>
+      <span>History</span>
+    </a>
+    <a class="p-tab-bar__tab" href="#skills">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 2 7.5l10 5 10-5zM4.2 11.4 2 12.5l10 5 10-5-2.2-1.1-7.8 3.9zm0 5L2 17.5l10 5 10-5-2.2-1.1-7.8 3.9z"/></svg>
+      <span>Skills</span>
+    </a>
+    <a class="p-tab-bar__tab" href="#info">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
+      <span>Info</span>
+    </a>
+  </nav>
+  <button id="theme-toggle" class="p-tab-bar-accessory theme-button" type="button" aria-label="Toggle dark mode">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2v16a8 8 0 0 1 0-16z"/></svg>
+  </button>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@codedgar/puppertino@2.0.0/src/js/tab_bar.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@codedgar/puppertino@2.0.0/src/js/dock.js"></script>
+  <script defer src="app.js"></script>
+</body>
+</html>
